@@ -109,19 +109,19 @@ class AAutoscaler:
         currentTime = datetime.now(tz=timezone.utc)
 
         # For each namespace
-        self.logs.info({f'message': 'Getting list of namespaces. hora: {currentTime}'})
+        self.logs.info({f'message': f'Getting list of namespaces. hora: {currentTime}'})
         namespaces = self.k8s.getNamespaces()
         for namespace in namespaces:
             namespaceName = namespace.metadata.name
-            self.logs.info({f'message': 'imprimindo namespace: {namespaceName}'})
+            self.logs.info({f'message': f'imprimindo namespace: {namespaceName}'})
 
             # For each deployment inside the namespace
             deployments = self.k8s.getDeployments(namespaceName)
             for deploy in deployments:
-                self.logs.info({f'message': 'imprimindo deploy: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo deploy: {deploy}'})
                 self.__start__(namespaceName, deploy, currentTime)
-                self.logs.info({f'message': 'imprimindo pós start: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo pos start: {deploy}'})
                 self.__stop__(namespaceName, deploy, currentTime)
-                self.logs.info({f'message': 'imprimindo pós stop: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo pos stop: {deploy}'})
                 self.__restart__(namespaceName, deploy, currentTime)
-                self.logs.info({f'message': 'imprimindo pós restart: {deploy}'})
+                self.logs.info({f'message': f'imprimindo pos restart: {deploy}'})

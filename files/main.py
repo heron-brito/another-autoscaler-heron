@@ -16,9 +16,9 @@ aautoscaler = AAutoscaler()
 if mode == 'daemon':
     schedule.every(checkEvery).seconds.do(aautoscaler.execute)
     while True:
-        Logs(__name__).debug({'message': 'Rodando em mode daemon antes da função run_pending.'})
+        Logs(__name__).debug({'message': 'Rodando em mode daemon antes da funcao run_pending.'})
         schedule.run_pending()
-        Logs(__name__).debug({'message': 'Rodando em mode daemon depois da função run_pending.'})
+        Logs(__name__).debug({'message': 'Rodando em mode daemon depois da funcao run_pending.'})
         time.sleep(1)
 else:
     Logs(__name__).info({'message': 'Running once then exit.'})
