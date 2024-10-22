@@ -113,15 +113,15 @@ class AAutoscaler:
         namespaces = self.k8s.getNamespaces()
         for namespace in namespaces:
             namespaceName = namespace.metadata.name
-            self.logs.info({f'message': f'imprimindo namespace: {namespaceName}'})
+            self.logs.debug({f'message': f'imprimindo namespace: {namespaceName}'})
 
             # For each deployment inside the namespace
             deployments = self.k8s.getDeployments(namespaceName)
             for deploy in deployments:
-                self.logs.debug({f'message': f'imprimindo deploy: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo deploy: {deploy.metadata.name}'})
                 self.__start__(namespaceName, deploy, currentTime)
-                self.logs.debug({f'message': f'imprimindo pos start: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo pos start: {deploy.metadata.name}'})
                 self.__stop__(namespaceName, deploy, currentTime)
-                self.logs.debug({f'message': f'imprimindo pos stop: {deploy}'})
+                self.logs.debug({f'message': f'imprimindo pos stop: {deploy.metadata.name}'})
                 self.__restart__(namespaceName, deploy, currentTime)
-                self.logs.info({f'message': f'imprimindo pos restart: {deploy}'})
+                self.logs.info({f'message': f'imprimindo pos restart: {deploy.metadata.name}'})
