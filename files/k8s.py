@@ -38,8 +38,8 @@ class K8s:
             response = self.CoreV1Api.list_namespace()
             return response.items
         except ApiException as e:
-            print(e)
             self.logs.error({'message': 'Exception when calling CoreV1Api.list_namespace'})
+            print(e)
             return []
 
     def getDeployments(self, namespace:str, labelSelector:str=False) -> list:
@@ -54,8 +54,8 @@ class K8s:
                 response = self.AppsV1Api.list_namespaced_deployment(namespace=namespace)
             return response.items
         except ApiException as e:
-            print(e)
             self.logs.error({'message': 'Exception when calling AppsV1Api.list_namespaced_deployment'})
+            print(e)
             return []
 
     def getDeployment(self, namespace:str, deploymentName:str):
@@ -65,8 +65,8 @@ class K8s:
         try:
             return self.AppsV1Api.read_namespaced_deployment(namespace=namespace, name=deploymentName)
         except ApiException as e:
-            print(e)
             self.logs.error({'message': 'Exception when calling AppsV1Api.read_namespaced_deployment'})
+            print(e)
             return []
 
     def getPods(self, namespace:str, labelSelector:str, limit:int=1) -> list:
@@ -78,8 +78,8 @@ class K8s:
             response = self.CoreV1Api.list_namespaced_pod(namespace=namespace, label_selector=labelSelector, limit=limit)
             return response.items
         except ApiException as e:
-            print(e)
             self.logs.error({'message': 'Exception when calling CoreV1Api.list_namespaced_pod'})
+            print(e)
             return []
 
     def getPodsByDeployment(self, namespace:str, deploymentName:str, limit:int=1) -> list:
