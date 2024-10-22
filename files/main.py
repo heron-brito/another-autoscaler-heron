@@ -19,7 +19,9 @@ if mode == 'daemon':
         Logs(__name__).debug({'message': 'Rodando em mode daemon antes da funcao run_pending.'})
         schedule.run_pending()
         Logs(__name__).debug({'message': 'Rodando em mode daemon depois da funcao run_pending.'})
-        time.sleep(1)
+        # time.sleep(1)
+        # aguardando 5 segundos ao inves de 1
+        time.sleep(5)
 else:
     Logs(__name__).info({'message': 'Running once then exit.'})
     aautoscaler.execute()
