@@ -16,6 +16,8 @@ RUN addgroup -g $GID -S $GROUP && adduser -u $UID -S $USER -G $GROUP
 # Copy app
 COPY --chown=$UID:$GID ./files/ $HOME/
 
-USER $UID:$GID
+
+# Colocando acesso de root
+# USER $UID:$GID
 WORKDIR $HOME
 CMD ["python3", "-u", "main.py"]
