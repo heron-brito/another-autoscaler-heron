@@ -1,4 +1,5 @@
-kubernetes==23.3.0
+# kubernetes==23.3.0 # Heron
+kubernetes==31.0.0
 schedule==1.1.0
 croniter==1.3.4
 pytz==2022.1
